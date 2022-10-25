@@ -6,8 +6,9 @@ import { produceConfig } from './config'
 import { checkVersion, log, panic } from './util'
 
 async function main() {
-  const cli = cac()
+  const cli = cac('ss')
   cli.option('-u [website-type]', 'use specific website type, such as google, baidu')
+  cli.usage('[options] [...keywords]')
   cli.help()
   cli.version(pkg.version)
   const parsed = cli.parse()
