@@ -1,0 +1,62 @@
+{
+  "name": "ss",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@7.12.0",
+  "description": "",
+  "author": "alexzhang1030",
+  "license": "MIT",
+  "homepage": "https://github.com/alexzhang1030/ss#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexzhang1030/ss.git"
+  },
+  "bugs": "https://github.com/alexzhang1030/ss/issues",
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "prepublishOnly": "pnpm run build",
+    "release": "bumpp && npm publish",
+    "start": "tsx src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.27.0",
+    "@types/node": "^18.7.18",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.23.1",
+    "pnpm": "^7.12.0",
+    "tsup": "^6.3.0",
+    "tsx": "^3.11.0",
+    "typescript": "^4.8.3",
+    "vitest": "^0.23.4"
+  },
+  "eslintConfig": {
+    "extends": "@antfu"
+  }
+}
