@@ -27,7 +27,7 @@
     "dev": "tsup --watch",
     "lint": "eslint .",
     "prepublishOnly": "pnpm run build",
-    "release": "bumpp && npm publish",
+    "release": "bumpp && npm publish --access public",
     "start": "tsx src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
