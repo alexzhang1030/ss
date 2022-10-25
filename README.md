@@ -47,6 +47,13 @@ extend:
     rule: https://developer.mozilla.org/zh-CN/search?q={keyword}
   - name: npm
     rule: https://www.npmjs.com/search?q={keyword}
+
+# version check interval
+# support: 1d(ay), 1h(our), 1m(inute), 1s(econd)
+vci: 1d
+
+# ignore it, it's for internal
+lastCheck: 1000000
 ```
 
 ### Default Support Website

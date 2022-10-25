@@ -27,7 +27,7 @@ async function main() {
   const url = target.rule.replace('{keyword}', encodeURIComponent(keywords))
   await open(url)
   log(`search ${chalk.blue(keywords)} by ${chalk.cyan(config.target)} `)
-  checkVersion()
+  checkVersion(config.vci, config.lastCheck)
 }
 
 main()

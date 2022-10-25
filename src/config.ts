@@ -10,9 +10,11 @@ interface CustomConfig {
 
 type DefaultTarget = 'baidu' | 'google'
 
-interface Config {
+export interface Config {
   target: string | DefaultTarget
   extend: CustomConfig[]
+  vci: string
+  lastCheck?: number
 }
 
 const defaultTarget: CustomConfig[] = [
@@ -41,18 +43,24 @@ const defaultTarget: CustomConfig[] = [
 const defaultConfig: Config = {
   target: 'google',
   extend: [],
+  vci: '1h',
 }
 
-const readConfig = () => {
-  const configPath = resolve(homedir(), '.ssrc')
-  let config: Config = defaultConfig
+export const configPath = resolve(homedir(), '.ssrc')
+export const checkConfigExistThen = (cb: () => void) => {
   try {
     accessSync(configPath, constants.R_OK)
-    config = parse(readFileSync(configPath, 'utf-8'))
+    cb()
   }
-  catch (error) {}
-  if (!config.target)
-    config.target = defaultConfig.target
+  catch (error) {
+  }
+}
+
+export const readConfig = () => {
+  let config: Config = defaultConfig
+  checkConfigExistThen(() => {
+    config = { ...defaultConfig, ...parse(readFileSync(configPath, 'utf-8')) }
+  })
   return config
 }
 
