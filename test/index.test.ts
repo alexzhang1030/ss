@@ -1,7 +1,28 @@
-import { describe, expect, it } from 'vitest'
+import { expect, test } from 'vitest'
+import { parse } from 'yaml'
 
-describe('should', () => {
-  it('exported', () => {
-    expect(1).toEqual(1)
-  })
+test('yaml parser test', () => {
+  const yaml = `
+    target: google
+    extend:
+      - name: mdn
+        rule: https://developer.mozilla.org/zh-CN/search?q={keyword}
+      - name: npm
+        rule: https://www.npmjs.com/search?q={keyword}
+  `
+  expect(parse(yaml)).toMatchInlineSnapshot(`
+    {
+      "extend": [
+        {
+          "name": "mdn",
+          "rule": "https://developer.mozilla.org/zh-CN/search?q={keyword}",
+        },
+        {
+          "name": "npm",
+          "rule": "https://www.npmjs.com/search?q={keyword}",
+        },
+      ],
+      "target": "google",
+    }
+  `)
 })
