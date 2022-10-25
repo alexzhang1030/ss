@@ -58,7 +58,7 @@ lastCheck: 1000000
 
 ### Default Support Website
 
-IF Your custom website name is the same as default, it will override default website.
+If Your custom website name is the same as default, it will override default website.
 
 ```ts
 [
