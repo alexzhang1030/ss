@@ -15,13 +15,21 @@ interface Config {
   extend: CustomConfig[]
 }
 
-const defaultTarget: CustomConfig[] = [{
-  name: 'baidu',
-  rule: 'https://www.baidu.com/s?wd={keyword}',
-}, {
-  name: 'google',
-  rule: 'https://www.google.com/search?q={keyword}',
-}]
+const defaultTarget: CustomConfig[] = [
+  {
+    name: 'baidu',
+    rule: 'https://www.baidu.com/s?wd={keyword}',
+  }, {
+    name: 'google',
+    rule: 'https://www.google.com/search?q={keyword}',
+  }, {
+    name: 'mdn',
+    rule: 'https://developer.mozilla.org/zh-CN/search?q={keyword}',
+  }, {
+    name: 'npm',
+    rule: 'https://www.npmjs.com/search?q={keyword}',
+  },
+]
 
 const defaultConfig: Config = {
   target: 'google',
@@ -43,6 +51,6 @@ const readConfig = () => {
 
 export const produceConfig = () => {
   const config = readConfig()
-  config.extend = config.extend.concat(defaultTarget)
+  config.extend = [...defaultTarget, ...config.extend]
   return config
 }
